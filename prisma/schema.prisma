@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model school {
+  school_id Int @id @default(autoincrement())
+  name String
+  adress String
+  students student[]
+}
+
+model student {
+  student_id Int  @id @default(autoincrement())
+  first_name String
+  last_name String
+  day_of_birth DateTime
+  school_id Int
+  school school @relation(fields: [school_id], references: [school_id])
+}
