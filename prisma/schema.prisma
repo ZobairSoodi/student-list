@@ -24,4 +24,5 @@ model student {
   day_of_birth DateTime
   school_id Int
   school school @relation(fields: [school_id], references: [school_id])
+  deleted Boolean @default(false)
 }
